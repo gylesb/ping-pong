@@ -6,12 +6,12 @@ var numbersList = function(numberInput) {
       output.push(i);
     }
     output.forEach(function(numberInput) {
-      if (numberInput % 3 === 0) {
-        output = "Ping";
-      } else if (numberInput % 5 === 0) {
-        output = "Pong";
-      } else if (numberInput % 15 === 0) {
-        output = "Ping Pong!";
+      if (i % 15 === 0) {
+        output.push("Ping Pong!");
+      } else if (i % 5 === 0) {
+        output.push("Pong!");
+      } else if (i % 3 === 0) {
+        output.push("Ping!");
       }
     });
   }
@@ -19,15 +19,21 @@ var numbersList = function(numberInput) {
 }
 
 
-
 $(document).ready(function() {
   $("#formOne").submit(function(event) {
-    $("ul#results").empty();
-    var numberInput = $("#number").val();
+    var numberInput = parseInt($("#number").val());
+    var output = numbersList(numberInput)
+
+    $("#reset").click(function() {
+      $("ul").empty();
+    });
 
 
+    output.forEach(function(numbers) {
+      $("#results").append("<li> " + numbers + "</li>");
+    })
 
-    $("ul#results").append(output);
+
 
     event.preventDefault();
   });
