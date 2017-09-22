@@ -1,20 +1,23 @@
-var numbersList = function(numberInput) {
+function numbersList(numberInput) {
   var output = [];
 
-  if (numberInput > 0) {
+
+    if (isNaN(numberInput)) {
+      alert("No real number detected");
+    } else if (numberInput <= 0) {
+      alert("Only insert positive whole numbers")
+    }
+
     for (var i = 1; i <= numberInput; i++) {
-      output.push(i);
-      output.forEach(function(numberInput) {
-        if (numberInput % 15 === 0) {
-          output.push("Ping Pong!");
-        } else if (numberInput % 5 === 0) {
-          output.push("Pong!")
-        } else if (numberInput % 3 === 0) {
-          output.push("Ping!");
-        } else {
-          output.push(i);
-        }
-      });
+      if (i % 15 === 0) {
+        output.push("Ping Pong!");
+      } else if (i % 5 === 0) {
+        output.push("Pong");
+      } else if (i % 3 === 0) {
+        output.push("Ping");
+      } else {
+        output.push(i);
+      }
     }
     return output;
   }
@@ -22,9 +25,9 @@ var numbersList = function(numberInput) {
 
   $(document).ready(function() {
     $("#formOne").submit(function(event) {
-      var numberInput = parseInt($("#number").val());
-      var output = numbersList(numberInput)
-      debugger;
+      var numbers = parseInt($("#number").val());
+      var output = numbersList(numbers);
+
       $("#reset").click(function() {
         $("ul#results").empty();
       });
