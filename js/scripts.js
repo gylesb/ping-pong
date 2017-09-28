@@ -35,6 +35,7 @@ function numbersList(numberInput) {
 
       output.forEach(function(numbers) {
         $("#results").append("<li> " + numbers + "</li>" + "<br>");
+        $("#results").show();
       })
 
 
